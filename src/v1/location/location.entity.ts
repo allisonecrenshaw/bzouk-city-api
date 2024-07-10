@@ -1,8 +1,7 @@
-import { Entity, Column, TableInheritance } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../utils/base.entity';
 
 @Entity()
-@TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export class Location extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   title: string;
