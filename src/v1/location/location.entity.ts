@@ -4,24 +4,24 @@ import { BaseEntity } from '../../utils/base.entity';
 @Entity()
 @TableInheritance({ column: { type: 'varchar', name: 'type' } })
 export class Location extends BaseEntity {
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: true })
   title: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   address_line1: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   address_line2: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: true })
   city: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: true })
   state: string;
 
-  @Column({ nullable: false })
+  @Column({ type: 'varchar', nullable: false })
   country: string;
 
-  @Column()
+  @Column({ type: 'varchar', nullable: true })
   postal_code: string;
 }
