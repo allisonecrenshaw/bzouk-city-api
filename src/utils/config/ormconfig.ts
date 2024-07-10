@@ -6,23 +6,19 @@ config();
 
 const configService = new ConfigService();
 
+console.log('log: In ormconfig.ts, BEFORE export new DataSource.');
+
 export default new DataSource({
   type: 'postgres',
-  url: configService.get<string>('DB_URL'),
+  host: configService.get('DB_HOST'),
+  port: configService.get('DB_PORT'),
+  username: configService.get('DB_USERNAME'),
+  password: configService.get('DB_PASSWORD'),
+  database: configService.get('DB_NAME'),
+  synchronize: false,
+  logging: false,
   entities: ['src/v1/**/*.entity.ts'],
   migrations: ['src/migrations/**/*.ts'],
 });
 
-// export const dataSource = new DataSource({
-//   type: 'postgres',
-//   host: configService.get('DB_HOST'),
-//   port: configService.get('DB_PORT'),
-//   username: configService.get('DB_USERNAME'),
-//   password: configService.get('DB_PASSWORD'),
-//   database: configService.get('DB_NAME'),
-//   synchronize: false,
-//   logging: false,
-//   entities: ['src/v1/**/*.entity.ts'],
-//   migrations: ['src/migrations/**/*.ts'],
-//   subscribers: ['src/subscriber/**/*.ts'],
-// });
+console.log('log: In ormconfig.ts, AFTER export new DataSource.');
