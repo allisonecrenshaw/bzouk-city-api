@@ -1,10 +1,13 @@
 import { Controller, Get, Post } from '@nestjs/common';
+import { LocationService } from './location.service';
 
 @Controller('location')
 export class LocationController {
+  constructor(private readonly locationService: LocationService) {}
+
   @Post()
   create(): string {
-    return 'This action will create a new location.';
+    return this.locationService.create();
   }
 
   @Get()

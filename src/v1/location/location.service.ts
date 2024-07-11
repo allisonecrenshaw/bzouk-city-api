@@ -1,3 +1,8 @@
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
 export class LocationService {
-  // stuff goes here
+  create() {
+    return 'This will create a location eventually.';
+  }
 }
