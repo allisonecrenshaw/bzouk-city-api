@@ -6,4 +6,6 @@ Resources:
     https://stackoverflow.com/questions/62096269/cant-run-my-node-js-typescript-project-typeerror-err-unknown-file-extension
   - NestJS Providers (Creating a Basic Service)
     https://docs.nestjs.com/providers
+  - TypeORM Find Functions:
+    https://typeorm.io/find-options
 */
