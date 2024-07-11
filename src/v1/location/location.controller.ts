@@ -12,6 +12,6 @@ export class LocationController {
 
   @Get()
   findAll(): string {
-    return 'This action will return all locations.';
+    return this.locationService.findAll();
   }
 }
