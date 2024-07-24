@@ -13,13 +13,20 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get<string>('DB_URL'),
+        type: configService.get<string>('DB_TYPE') as 'postgres',
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_NAME'),
         migrations: ['/migrations/*{.ts,.js}'],
         migrationsRun: true,
         entities: ['src/v1/**/*.entity{.ts,.js}'],
         synchronize: false,
         logging: true,
+        ssl: {
+          rejectUnauthorized: false, // This may vary based on your security requirements
+        },
       }),
     }),
   ],
