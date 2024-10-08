@@ -16,12 +16,7 @@ export default new DataSource({
   password: configService.get('DB_PASSWORD'),
   database: configService.get('DB_NAME'),
   synchronize: false,
-  ssl: true,
-  extra: {
-    ssl: {
-      rejectUnauthorized: false,
-    },
-  },
+  ssl: false,
   logging: false,
   entities: ['src/v1/**/*.entity.ts'],
   migrations: ['src/migrations/**/*.ts'],
