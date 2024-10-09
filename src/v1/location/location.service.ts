@@ -11,7 +11,10 @@ export class LocationService {
   ) {}
 
   async findOneById(id: string): Promise<LocationEntity> {
-    const location = await this.locationRepository.findOne({ where: { id } });
+    const location = await this.locationRepository.findOne({
+      where: { id },
+    });
+
     if (!location) {
       throw new NotFoundException(`Location with id ${id} not found.`);
     }

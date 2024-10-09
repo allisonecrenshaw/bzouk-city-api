@@ -17,6 +17,6 @@ export default (configService: ConfigService): DataSourceOptions => ({
       ? { rejectUnauthorized: false }
       : false,
   synchronize: configService.get<string>('NODE_ENV') !== 'production',
-  entities: ['src/v1/**/*.entity.js'],
-  migrations: ['src/migrations/**/*.js'],
+  entities: ['dist/v1/**/*.entity.js'],
+  migrations: ['dist/migrations/**/*.js'],
 });
