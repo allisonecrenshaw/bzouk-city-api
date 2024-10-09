@@ -1,17 +1,12 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { LocationService } from './location.service';
 
 @Controller('location')
 export class LocationController {
   constructor(private readonly locationService: LocationService) {}
 
-  @Post()
-  create(): string {
-    return this.locationService.create();
-  }
-
-  @Get()
-  findAll(): string {
-    return this.locationService.findAll();
+  @Get(':id')
+  async find(@Param('id') id: string): Promise<String> {
+    return this.locationService.find(id);
   }
 }

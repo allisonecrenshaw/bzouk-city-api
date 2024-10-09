@@ -2,11 +2,9 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class LocationService {
-  create() {
-    return 'This will (eventually) create a location.';
-  }
 
-  findAll() {
-    return 'This will (eventually) return all locations.';
+  find(id: String) {
+    console.log(id);
+    return 'This will (eventually) return a location by id.';
   }
 }
