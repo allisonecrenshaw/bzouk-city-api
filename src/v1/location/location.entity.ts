@@ -2,7 +2,7 @@ import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../utils/base.entity.js';
 
 @Entity()
-export class Location extends BaseEntity {
+export class LocationEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: true })
   title: string;
 
