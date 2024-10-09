@@ -1,7 +1,9 @@
 import { ConfigService } from '@nestjs/config';
 import { DataSourceOptions } from 'typeorm';
+import { Logger } from '@nestjs/common';
 
-console.log('LOG: Hitting ormconfig');
+const logger = new Logger('ORMConfig');
+logger.log('Hitting ormconfig');
 
 export default (configService: ConfigService): DataSourceOptions => ({
   type: 'postgres',

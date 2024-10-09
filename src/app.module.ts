@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import ormConfig from './utils/config/ormconfig.js';
 
-console.log('LOG: Hitting app.module');
+const logger = new Logger('AppModule');
+logger.log('Hitting app.module');
 
 @Module({
   imports: [
