@@ -16,6 +16,11 @@ async function bootstrap() {
 
   mainLogger.log('Calling await app.listen()');
   await app.listen(3000);
+
+  const dbLogger = new Logger('DatabaseConnection');
+  dbLogger.log(`DB_HOST: ${process.env.DB_HOST}`, );
+  dbLogger.log(`DB_USERNAME: ${process.env.DB_USERNAME}`);
+  dbLogger.log(`DB_NAME: ${process.env.DB_NAME}`);
 }
 
 bootstrap();
