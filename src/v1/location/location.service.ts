@@ -22,4 +22,8 @@ export class LocationService {
   async findAll(): Promise<LocationEntity[]> {
     return await this.locationRepository.find();
   }
+
+  async create(): Promise<String> {
+    return 'This will create a new location.';
+  }
 }

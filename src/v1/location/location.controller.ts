@@ -15,4 +15,9 @@ export class LocationController {
   async findAll(): Promise<LocationEntity[]> {
     return await this.locationService.findAll();
   }
+
+  @Post()
+  async create(): Promise<String> {
+    return await this.locationService.create();
+  }
 }
