@@ -7,7 +7,12 @@ export class LocationController {
   constructor(private readonly locationService: LocationService) {}
 
   @Get(':id')
-  async getById(@Param('id') id: string): Promise<LocationEntity> {
+  async getById(@Param('id') id: string): Promise<LocationEntity | null> {
     return this.locationService.findOneById(id);
+  }
+
+  @Get()
+  async findAll(): Promise<LocationEntity[]> {
+    return await this.locationService.findAll();
   }
 }
