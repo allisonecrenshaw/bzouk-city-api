@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
-import { LocationEntity } from './location.entity.js';
+import { LocationEntity, NewLocationDTO } from './location.entity.js';
 
 @Injectable()
 export class LocationService {
@@ -23,7 +23,8 @@ export class LocationService {
     return await this.locationRepository.find();
   }
 
-  async create(): Promise<String> {
+  async create(newLocationDTO: NewLocationDTO): Promise<String> {
+    console.log(newLocationDTO);
     return 'This will create a new location.';
   }
 }
