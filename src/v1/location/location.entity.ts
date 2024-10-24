@@ -1,6 +1,7 @@
 import { Entity, Column } from 'typeorm';
-import { BaseEntity } from '../../utils/base.entity.js';
+import { BaseDTO, BaseEntity } from '../../utils/base.entity.js';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IntersectionType } from '@nestjs/mapped-types';
 
 export class NewLocationDTO {
   @IsOptional()
@@ -19,6 +20,8 @@ export class NewLocationDTO {
   @IsOptional()
   postal_code: string;
 }
+
+export class LocationDTO extends IntersectionType(BaseDTO, NewLocationDTO) {}
 
 @Entity('location')
 export class LocationEntity extends BaseEntity {
