@@ -1,10 +1,16 @@
 import {
-  Entity,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
+
+export class BaseDTO {
+  id: string;
+  createdDate: string;
+  updatedDate: string;
+  deletedDate: string;
+}
 
 export class BaseEntity {
   @PrimaryGeneratedColumn('uuid')
