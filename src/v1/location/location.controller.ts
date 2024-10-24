@@ -1,6 +1,9 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { LocationService } from './location.service.js';
-import { LocationEntity, NewLocationDTO } from './location.entity.js';
+import {
+  LocationEntity,
+  NewLocationDTO,
+} from './location.entity.js';
 
 @Controller('location')
 export class LocationController {
@@ -17,7 +20,9 @@ export class LocationController {
   }
 
   @Post()
-  async create(@Body() newLocationDTO: NewLocationDTO): Promise<String> {
+  async create(
+    @Body() newLocationDTO: NewLocationDTO,
+  ): Promise<LocationEntity> {
     return await this.locationService.create(newLocationDTO);
   }
 }

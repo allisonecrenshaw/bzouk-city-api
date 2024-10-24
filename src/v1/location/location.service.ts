@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { LocationEntity, NewLocationDTO } from './location.entity.js';
+import {
+  LocationEntity,
+  NewLocationDTO,
+} from './location.entity.js';
 
 @Injectable()
 export class LocationService {
@@ -23,8 +26,9 @@ export class LocationService {
     return await this.locationRepository.find();
   }
 
-  async create(newLocationDTO: NewLocationDTO): Promise<String> {
-    console.log(newLocationDTO);
-    return 'This will create a new location.';
+  async create(newLocationDTO: NewLocationDTO): Promise<LocationEntity> {
+    const location = this.locationRepository.create(newLocationDTO);
+    console.log(`Location: ${location}`);
+    return this.locationRepository.save(location);
   }
 }
