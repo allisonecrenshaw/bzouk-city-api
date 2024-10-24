@@ -28,7 +28,6 @@ export class LocationService {
 
   async create(newLocationDTO: NewLocationDTO): Promise<LocationEntity> {
     const location = this.locationRepository.create(newLocationDTO);
-    console.log(`Location: ${location}`);
     return this.locationRepository.save(location);
   }
 }
