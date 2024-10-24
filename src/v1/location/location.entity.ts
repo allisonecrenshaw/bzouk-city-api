@@ -1,13 +1,22 @@
 import { Entity, Column } from 'typeorm';
 import { BaseEntity } from '../../utils/base.entity.js';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class NewLocationDTO {
+  @IsOptional()
   title: string;
+  @IsOptional()
   address_line1: string;
+  @IsOptional()
   address_line2: string;
+  @IsOptional()
   city: string;
+  @IsOptional()
   state: string;
+  @IsNotEmpty()
+  @IsString()
   country: string;
+  @IsOptional()
   postal_code: string;
 }
 
