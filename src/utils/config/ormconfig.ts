@@ -5,7 +5,9 @@ import { Logger } from '@nestjs/common';
 const logger = new Logger('ORMConfig');
 logger.log('Hitting ormconfig');
 
-export default (configService: ConfigService): DataSourceOptions => ({
+export const getDataSourceOptions = (
+  configService: ConfigService,
+): DataSourceOptions => ({
   type: 'postgres',
   host: configService.get<string>('DB_HOST'),
   port: configService.get<number>('DB_PORT'),
@@ -16,7 +18,7 @@ export default (configService: ConfigService): DataSourceOptions => ({
     configService.get<string>('NODE_ENV') === 'production'
       ? { rejectUnauthorized: false }
       : false,
-  synchronize: configService.get<string>('NODE_ENV') !== 'production',
+  synchronize: false,
   entities: ['dist/v1/**/*.entity.js'],
   migrations: ['dist/migrations/**/*.js'],
 });

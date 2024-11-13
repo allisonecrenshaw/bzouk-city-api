@@ -1,7 +1,7 @@
 import { Module, Logger } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import ormConfig from './utils/config/ormconfig.js';
+import { getDataSourceOptions } from './utils/config/ormconfig.js';
 import { LocationEntity } from './v1/location/location.entity.js';
 import { LocationController } from './v1/location/location.controller.js';
 import { LocationService } from './v1/location/location.service.js';
@@ -15,7 +15,8 @@ logger.log('Hitting app.module');
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ormConfig(configService),
+      useFactory: (configService: ConfigService) =>
+        getDataSourceOptions(configService),
     }),
     TypeOrmModule.forFeature([LocationEntity]),
   ],
