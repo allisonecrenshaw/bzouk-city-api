@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity } from 'typeorm';
+import { Entity, Column } from 'typeorm';
+import { BaseEntity } from '../../utils/base.entity.js';
 
 @Entity('recurrence_rule')
 export class RecurrenceRuleEntity extends BaseEntity {
