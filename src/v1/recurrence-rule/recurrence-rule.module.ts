@@ -1,4 +1,12 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { RecurrenceRuleEntity } from './recurrence-rule.entity';
+import { RecurrenceDetailsModule } from '../recurrence-details/recurrence-details.module';
 
-@Module({})
+@Module({
+  imports: [
+    TypeOrmModule.forFeature([RecurrenceRuleEntity]),
+    forwardRef(() => RecurrenceDetailsModule),
+  ],
+})
 export class RecurrenceRuleModule {}
