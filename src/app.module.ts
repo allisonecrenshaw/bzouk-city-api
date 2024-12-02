@@ -5,8 +5,8 @@ import { getDataSourceOptions } from './utils/config/ormconfig.js';
 import { LocationEntity } from './v1/location/location.entity.js';
 import { LocationController } from './v1/location/location.controller.js';
 import { LocationService } from './v1/location/location.service.js';
-import { RecurrenceRuleEntity } from './v1/recurrence-rule/recurrence-rule.entity.js';
-import { RecurrenceDetailsEntity } from './v1/recurrence-details/recurrence-details.entity.js';
+import { RecurrenceRuleModule } from './v1/recurrence-rule/recurrence-rule.module.js';
+import { RecurrenceDetailsModule } from './v1/recurrence-details/recurrence-details.module.js';
 
 const logger = new Logger('AppModule');
 logger.log('Hitting app.module');
@@ -20,11 +20,9 @@ logger.log('Hitting app.module');
       useFactory: (configService: ConfigService) =>
         getDataSourceOptions(configService),
     }),
-    TypeOrmModule.forFeature([
-      LocationEntity,
-      RecurrenceRuleEntity,
-      RecurrenceDetailsEntity,
-    ]),
+    TypeOrmModule.forFeature([LocationEntity]),
+    RecurrenceRuleModule,
+    RecurrenceDetailsModule,
   ],
   controllers: [LocationController],
   providers: [LocationService],
