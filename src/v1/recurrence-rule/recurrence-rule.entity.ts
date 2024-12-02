@@ -1,5 +1,6 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../utils/base.entity.js';
+import { RecurrenceDetailsEntity } from '../recurrence-details/recurrence-details.entity.js';
 
 @Entity('recurrence_rule')
 export class RecurrenceRuleEntity extends BaseEntity {
@@ -14,4 +15,13 @@ export class RecurrenceRuleEntity extends BaseEntity {
 
   @Column({ type: 'varchar', nullable: true })
   end_date: string;
+
+  @OneToMany(
+    () => RecurrenceDetailsEntity,
+    recurrenceDetails => recurrenceDetails.recurrenceRule,
+    {
+      cascade: true,
+    },
+  )
+  recurrenceDetails: RecurrenceDetailsEntity[];
 }
