@@ -4,6 +4,12 @@ import { RecurrenceRuleEntity } from '../recurrence-rule/recurrence-rule.entity.
 
 @Entity('recurrence_details')
 export class RecurrenceDetailsEntity extends BaseEntity {
+  @Column({ type: 'varchar', nullable: false })
+  type: string;
+
+  @Column({ type: 'varchar', nullable: false })
+  value: string;
+
   @ManyToOne(
     () => RecurrenceRuleEntity,
     recurrenceRule => recurrenceRule.recurrenceDetails,
@@ -12,10 +18,4 @@ export class RecurrenceDetailsEntity extends BaseEntity {
     },
   )
   recurrenceRule: RecurrenceRuleEntity;
-
-  @Column({ type: 'varchar', nullable: false })
-  type: string;
-
-  @Column({ type: 'varchar', nullable: false })
-  value: string;
 }
