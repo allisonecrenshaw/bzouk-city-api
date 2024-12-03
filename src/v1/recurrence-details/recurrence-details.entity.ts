@@ -17,5 +17,5 @@ export class RecurrenceDetailsEntity extends BaseEntity {
       onDelete: 'CASCADE',
     },
   )
-  recurrenceRule: RecurrenceRuleEntity;
+  recurrenceRule: Promise<RecurrenceRuleEntity>;
 }
