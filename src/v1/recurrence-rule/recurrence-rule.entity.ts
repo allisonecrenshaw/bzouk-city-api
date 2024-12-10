@@ -1,20 +1,28 @@
 import { Entity, Column, OneToMany } from 'typeorm';
 import { BaseDTO, BaseEntity } from '../../utils/base.entity.js';
 import { RecurrenceDetailsEntity } from '../recurrence-details/recurrence-details.entity.js';
-import { IsNotEmpty } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 import { IntersectionType } from '@nestjs/mapped-types';
 
 export class NewRecurrenceRuleDTO {
   @IsNotEmpty()
+  @IsString()
   frequency: string;
+
+  @IsInt()
   @IsNotEmpty()
   interval: number;
+
   @IsNotEmpty()
+  @IsString()
   start_date: string;
+
   @IsNotEmpty()
+  @IsString()
   end_date: string;
-  @IsNotEmpty()
-  recurrenceDetails: PartialRecurrenceDetailsDTO;
+
+  // TODO -- Check above section and finish this one
+  // recurrenceDetails: PartialRecurrenceDetailsDTO;
 }
 
 export class RecurrenceRuleDTO extends IntersectionType(
