@@ -1,10 +1,9 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../utils/base.entity.js';
 import { RecurrenceRuleEntity } from '../recurrence-rule/recurrence-rule.entity.js';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class NewRecurrenceDetailsDTO {
-  // TODO -- Check this section -- not yet finished with recurrence rule DTO
   @IsNotEmpty()
   @IsString()
   type: string;
@@ -12,6 +11,10 @@ export class NewRecurrenceDetailsDTO {
   @IsNotEmpty()
   @IsString()
   value: string;
+
+  @IsOptional()
+  @IsUUID()
+  recurrenceRuleId?: string;
 }
 
 @Entity('recurrence_details')
