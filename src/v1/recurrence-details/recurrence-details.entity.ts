@@ -17,9 +17,6 @@ export class NewRecurrenceDetailsDTO {
   recurrenceRuleId?: string;
 }
 
-// TODO Create PartialRecurrenceDetailsDTO
-export class PartialRecurrenceDetailsDTO {}
-
 @Entity('recurrence_details')
 export class RecurrenceDetailsEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
