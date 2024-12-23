@@ -21,7 +21,7 @@ export class NewRecurrenceRuleDTO {
   @IsString()
   end_date: string;
 
-  // TODO -- Check above section and finish this one
+  // TODO -- After PartialRecurrenceDetailsDTO is finished, uncomment here
   // recurrenceDetails: PartialRecurrenceDetailsDTO;
 }
 
