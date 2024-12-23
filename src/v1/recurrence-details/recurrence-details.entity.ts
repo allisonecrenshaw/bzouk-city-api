@@ -12,7 +12,7 @@ export class NewRecurrenceDetailsDTO {
   @IsString()
   value: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsUUID()
   recurrenceRuleId?: string;
 }
@@ -30,6 +30,7 @@ export class RecurrenceDetailsEntity extends BaseEntity {
     recurrenceRule => recurrenceRule.recurrenceDetails,
     {
       onDelete: 'CASCADE',
+      nullable: false,
     },
   )
   recurrenceRule: Promise<RecurrenceRuleEntity>;
