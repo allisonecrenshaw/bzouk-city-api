@@ -9,6 +9,8 @@ import { RecurrenceRuleModule } from './v1/recurrence-rule/recurrence-rule.modul
 import { RecurrenceDetailsModule } from './v1/recurrence-details/recurrence-details.module.js';
 import { RecurrenceDetailsEntity } from './v1/recurrence-details/recurrence-details.entity.js';
 import { RecurrenceRuleEntity } from './v1/recurrence-rule/recurrence-rule.entity.js';
+import { RecurrenceRuleController } from './v1/recurrence-rule/recurrence-rule.controller.js';
+import { RecurrenceRuleService } from './v1/recurrence-rule/recurrence-rule.service.js';
 
 const logger = new Logger('AppModule');
 logger.log('Hitting app.module');
@@ -36,7 +38,7 @@ logger.log('Hitting app.module');
       RecurrenceDetailsEntity,
     ]),
   ],
-  controllers: [LocationController],
-  providers: [LocationService],
+  controllers: [LocationController, RecurrenceRuleController],
+  providers: [LocationService, RecurrenceRuleService],
 })
 export class AppModule {}
