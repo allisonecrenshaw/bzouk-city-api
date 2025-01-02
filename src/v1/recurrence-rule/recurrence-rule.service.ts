@@ -14,6 +14,7 @@ export class RecurrenceRuleService {
     try {
       const recurrenceRule = await this.recurrenceRuleRepository.findOne({
         where: { id },
+        relations: ['recurrenceDetails'],
       });
       return recurrenceRule;
     } catch (error) {
