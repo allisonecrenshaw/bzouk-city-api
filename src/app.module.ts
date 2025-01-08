@@ -5,8 +5,6 @@ import { getDataSourceOptions } from './utils/config/ormconfig.js';
 import { LocationEntity } from './v1/location/location.entity.js';
 import { LocationController } from './v1/location/location.controller.js';
 import { LocationService } from './v1/location/location.service.js';
-import { RecurrenceRuleModule } from './v1/recurrence-rule/recurrence-rule.module.js';
-import { RecurrenceDetailsModule } from './v1/recurrence-details/recurrence-details.module.js';
 import { RecurrenceDetailsEntity } from './v1/recurrence-details/recurrence-details.entity.js';
 import { RecurrenceRuleEntity } from './v1/recurrence-rule/recurrence-rule.entity.js';
 import { RecurrenceRuleController } from './v1/recurrence-rule/recurrence-rule.controller.js';
