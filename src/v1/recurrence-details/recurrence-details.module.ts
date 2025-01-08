@@ -8,6 +8,5 @@ import { RecurrenceRuleModule } from '../recurrence-rule/recurrence-rule.module.
     TypeOrmModule.forFeature([RecurrenceDetailsEntity]),
     forwardRef(() => RecurrenceRuleModule),
   ],
-  exports: [TypeOrmModule],
 })
 export class RecurrenceDetailsModule {}
