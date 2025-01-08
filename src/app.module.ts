@@ -2,13 +2,7 @@ import { Module, Logger } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getDataSourceOptions } from './utils/config/ormconfig.js';
-import { LocationEntity } from './v1/location/location.entity.js';
-import { LocationController } from './v1/location/location.controller.js';
-import { LocationService } from './v1/location/location.service.js';
-import { RecurrenceDetailsEntity } from './v1/recurrence-details/recurrence-details.entity.js';
-import { RecurrenceRuleEntity } from './v1/recurrence-rule/recurrence-rule.entity.js';
-import { RecurrenceRuleController } from './v1/recurrence-rule/recurrence-rule.controller.js';
-import { RecurrenceRuleService } from './v1/recurrence-rule/recurrence-rule.service.js';
+import { V1Module } from './v1/v1.module.js';
 
 const logger = new Logger('AppModule');
 logger.log('Hitting app.module');
@@ -30,13 +24,7 @@ logger.log('Hitting app.module');
         };
       },
     }),
-    TypeOrmModule.forFeature([
-      LocationEntity,
-      RecurrenceRuleEntity,
-      RecurrenceDetailsEntity,
-    ]),
+    V1Module,
   ],
-  controllers: [LocationController, RecurrenceRuleController],
-  providers: [LocationService, RecurrenceRuleService],
 })
 export class AppModule {}
