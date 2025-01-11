@@ -1,21 +1,44 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../utils/base.entity.js';
+import { LocationEntity } from '../location/location.entity.js';
 
 @Entity('event')
-// TODO add in recurrence fix, add in time fix
 export class EventEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   title: string;
 
-  @Column({ type: 'varchar', nullable: true })
+  @Column({ type: 'text', nullable: true })
   description: string;
 
-  @ManyToOne(() => Location, { nullable: false })
-  location: Location;
+  @ManyToOne(() => LocationEntity, { nullable: false, onDelete: 'RESTRICT' })
+  @JoinColumn({ name: 'location_id' })
+  location: LocationEntity;
 
-  @Column({ type: 'varchar', nullable: true })
-  website_url: string;
+  @Column({ name: 'location_id', type: 'uuid', nullable: false })
+  locationId: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  registration_url: string;
+  @Column({ type: 'timestamptz', nullable: false, name: 'start_date_time' })
+  startDateTime: Date;
+
+  @Column({ type: 'timestamptz', nullable: false, name: 'end_date_time' })
+  endDateTime: Date;
+
+  @Column({ type: 'boolean', nullable: false, name: 'is_recurring' })
+  isRecurring: boolean;
+
+  // @ManyToOne(() => Event, { nullable: true })
+  // @JoinColumn({ name: 'parent_event_id' })
+  // parentEvent: EventEntity;
+
+  // @Column({ type: 'uuid', nullable: true, name: 'parent_event_id' })
+  // parentEventId: string;
+
+  @Column({ type: 'varchar', nullable: false })
+  type: string; // TODO create an enum of event types to be enforced here
+
+  @Column({ type: 'varchar', nullable: true, name: 'website_url' })
+  websiteURL: string;
+
+  @Column({ type: 'varchar', nullable: true, name: 'registration_url' })
+  registrationURL: string;
 }
