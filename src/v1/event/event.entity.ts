@@ -26,6 +26,7 @@ export class EventEntity extends BaseEntity {
   @Column({ type: 'boolean', nullable: false, name: 'is_recurring' })
   isRecurring: boolean;
 
+  // TODO figure out what is wrong with this code
   // @ManyToOne(() => Event, { nullable: true })
   // @JoinColumn({ name: 'parent_event_id' })
   // parentEvent: EventEntity;
