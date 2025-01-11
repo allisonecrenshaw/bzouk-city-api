@@ -16,14 +16,6 @@ export class NewRecurrenceRuleDTO {
   @IsNotEmpty()
   interval: number;
 
-  @IsNotEmpty()
-  @IsString()
-  start_date: string;
-
-  @IsNotEmpty()
-  @IsString()
-  end_date: string;
-
   recurrenceDetails: NewRecurrenceDetailsDTO;
 }
 
@@ -39,12 +31,6 @@ export class RecurrenceRuleEntity extends BaseEntity {
 
   @Column({ type: 'int', nullable: false })
   interval: number;
-
-  @Column({ type: 'varchar', nullable: true })
-  start_date: string;
-
-  @Column({ type: 'varchar', nullable: true })
-  end_date: string;
 
   @OneToMany(
     () => RecurrenceDetailsEntity,
