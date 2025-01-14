@@ -1,5 +1,5 @@
 import { Entity, Column, OneToMany } from 'typeorm';
-import { BaseDTO, BaseEntity } from '../../utils/base.entity.js';
+import { BaseDTO, DefaultEntity } from '../../utils/default.entity.js';
 import {
   NewRecurrenceDetailsDTO,
   RecurrenceDetailsEntity,
@@ -25,7 +25,7 @@ export class RecurrenceRuleDTO extends IntersectionType(
 ) {}
 
 @Entity('recurrence_rule')
-export class RecurrenceRuleEntity extends BaseEntity {
+export class RecurrenceRuleEntity extends DefaultEntity {
   @Column({ type: 'varchar', nullable: false })
   frequency: string;
 

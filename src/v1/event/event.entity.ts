@@ -1,9 +1,9 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { BaseEntity } from '../../utils/base.entity.js';
+import { DefaultEntity } from '../../utils/default.entity.js';
 import { LocationEntity } from '../location/location.entity.js';
 
 @Entity('event')
-export class EventEntity extends BaseEntity {
+export class EventEntity extends DefaultEntity {
   @Column({ type: 'varchar', nullable: false })
   title: string;
 
@@ -26,14 +26,6 @@ export class EventEntity extends BaseEntity {
   @Column({ type: 'boolean', nullable: false, name: 'is_recurring' })
   isRecurring: boolean;
 
-  // TODO figure out what is wrong with this code
-  // @ManyToOne(() => Event, { nullable: true })
-  // @JoinColumn({ name: 'parent_event_id' })
-  // parentEvent: EventEntity;
-
-  // @Column({ type: 'uuid', nullable: true, name: 'parent_event_id' })
-  // parentEventId: string;
-
   @Column({ type: 'varchar', nullable: false })
   type: string; // TODO create an enum of event types to be enforced here
 
@@ -42,4 +34,11 @@ export class EventEntity extends BaseEntity {
 
   @Column({ type: 'varchar', nullable: true, name: 'registration_url' })
   registrationURL: string;
+
+  // @ManyToOne(() => EventEntity, { nullable: true })
+  // @JoinColumn({ name: 'parent_event_id' })
+  // parentEvent: EventEntity;
+
+  // @Column({ type: 'uuid', nullable: true, name: 'parent_event_id' })
+  // parentEventId: string;
 }

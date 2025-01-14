@@ -12,7 +12,7 @@ export class BaseDTO {
   deletedDate: string;
 }
 
-export class BaseEntity {
+export class DefaultEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
