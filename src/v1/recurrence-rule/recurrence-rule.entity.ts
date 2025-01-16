@@ -16,6 +16,10 @@ export class NewRecurrenceRuleDTO {
   @IsNotEmpty()
   interval: number;
 
+  @IsNotEmpty()
+  @IsString()
+  timezone: string;
+
   recurrenceDetails: NewRecurrenceDetailsDTO;
 }
 
@@ -31,6 +35,9 @@ export class RecurrenceRuleEntity extends DefaultEntity {
 
   @Column({ type: 'int', nullable: false })
   interval: number;
+
+  @Column({ type: 'varchar', nullable: false })
+  timezone: string; // might need to update this to an enum later
 
   @OneToMany(
     () => RecurrenceDetailsEntity,
