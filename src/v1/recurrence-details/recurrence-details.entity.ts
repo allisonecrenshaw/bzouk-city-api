@@ -25,6 +25,15 @@ export class RecurrenceDetailsEntity extends DefaultEntity {
   @Column({ type: 'varchar', nullable: false })
   value: string;
 
+  @Column({ type: 'varchar', nullable: false, name: 'start_time' })
+  startTime: string;
+
+  @Column({ type: 'varchar', nullable: false, name: 'end_time' })
+  endTime: string;
+
+  @Column({ type: 'varchar', nullable: false, name: 'spans_next_day' })
+  spansNextDay: boolean;
+
   @ManyToOne(
     () => RecurrenceRuleEntity,
     recurrenceRule => recurrenceRule.recurrenceDetails,
