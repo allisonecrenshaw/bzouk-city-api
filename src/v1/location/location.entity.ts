@@ -28,11 +28,11 @@ export class LocationEntity extends DefaultEntity {
   @Column({ type: 'varchar', nullable: true })
   title: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  address_line1: string;
+  @Column({ type: 'varchar', nullable: true, name: 'address_line1' })
+  addressLine1: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  address_line2: string;
+  @Column({ type: 'varchar', nullable: true, name: 'address_line2' })
+  addressLine2: string;
 
   @Column({ type: 'varchar', nullable: true })
   city: string;
@@ -43,6 +43,6 @@ export class LocationEntity extends DefaultEntity {
   @Column({ type: 'varchar', nullable: false })
   country: string;
 
-  @Column({ type: 'varchar', nullable: true })
-  postal_code: string;
+  @Column({ type: 'varchar', nullable: true, name: 'postal_code' })
+  postalCode: string;
 }
