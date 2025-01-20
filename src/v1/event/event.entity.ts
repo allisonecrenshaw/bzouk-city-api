@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { DefaultEntity } from '../../utils/default.entity.js';
 import { LocationEntity } from '../location/location.entity.js';
 
@@ -35,10 +35,16 @@ export class EventEntity extends DefaultEntity {
   @Column({ type: 'varchar', nullable: true, name: 'registration_url' })
   registrationURL: string;
 
-  // @ManyToOne(() => EventEntity, { nullable: true })
-  // @JoinColumn({ name: 'parent_event_id' })
-  // parentEvent: EventEntity;
+  @ManyToOne(() => EventEntity, event => event.childEvents, {
+    nullable: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'parent_event_id' })
+  parentEvent: EventEntity;
 
-  // @Column({ type: 'uuid', nullable: true, name: 'parent_event_id' })
-  // parentEventId: string;
+  @Column({ type: 'uuid', nullable: true, name: 'parent_event_id' })
+  parentEventId: string;
+
+  @OneToMany(() => EventEntity, event => event.parentEventId, { cascade: true })
+  childEvents: EventEntity[];
 }
