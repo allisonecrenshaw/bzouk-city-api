@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RecurrenceDetailsEntity } from './recurrence-details.entity';
+import {
+  NewRecurrenceDetailsDTO,
+  RecurrenceDetailsEntity,
+} from './recurrence-details.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -10,7 +13,12 @@ export class RecurrenceDetailsService {
     private recurrenceDetailsRepository: Repository<RecurrenceDetailsEntity>,
   ) {}
 
-  async create(recurrenceDetailsDto: string): Promise<string> {
-    return 'todo';
+  async create(
+    newRecurrenceDetailsDTO: NewRecurrenceDetailsDTO,
+  ): Promise<RecurrenceDetailsEntity> {
+    const recurrenceDetails = this.recurrenceDetailsRepository.create(
+      newRecurrenceDetailsDTO,
+    );
+    return this.recurrenceDetailsRepository.save(recurrenceDetails);
   }
 }
