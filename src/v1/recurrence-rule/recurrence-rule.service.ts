@@ -31,4 +31,8 @@ export class RecurrenceRuleService {
       throw error;
     }
   }
+
+  async create(): Promise<string> {
+    return 'to do';
+  }
 }
