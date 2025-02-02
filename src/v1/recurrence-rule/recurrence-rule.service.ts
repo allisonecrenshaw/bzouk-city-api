@@ -1,7 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Body, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { RecurrenceRuleEntity } from './recurrence-rule.entity.js';
+import { NewRecurrenceRuleDTO, RecurrenceRuleEntity } from './recurrence-rule.entity.js';
 
 @Injectable()
 export class RecurrenceRuleService {
@@ -32,7 +32,9 @@ export class RecurrenceRuleService {
     }
   }
 
-  async create(): Promise<string> {
+  async create(
+    @Body() newRecurrenceRuleDTO: NewRecurrenceRuleDTO
+  ): Promise<string> {
     return 'to do';
   }
 }
