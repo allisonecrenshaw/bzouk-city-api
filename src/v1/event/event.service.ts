@@ -28,4 +28,10 @@ export class EventService {
       throw error;
     }
   }
+
+  async createEventAndRecurrenceRule(): Promise<string> {
+    // TO DO: Implement event creation
+    // Will need also make calls to create RecurrenceRule and RecurrenceDetails
+    return 'to do';
+  }
 }

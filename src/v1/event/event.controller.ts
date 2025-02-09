@@ -12,8 +12,8 @@ export class EventController {
   }
 
   @Post()
-    // TODO finish this endpoint next
-  create(): string {
-    return 'todo';
+  // Update return type here when service implementation is finished
+  async create(): Promise<string> {
+    return this.eventService.createEventAndRecurrenceRule();
   }
 }
