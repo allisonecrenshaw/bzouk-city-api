@@ -34,4 +34,31 @@ export class EventService {
     // Will need also make calls to create RecurrenceRule and RecurrenceDetails
     return 'to do';
   }
+
+  async isParentValid(eventId: string): Promise<boolean> {
+    const event = await this.eventRepository.findOne({
+      where: { id: eventId },
+    });
+
+    if (!event) {
+      return false;
+    }
+
+    let eventHasParent = this.hasParent(event);
+
+    // event's parent is not allowed to also have a parent
+    if (eventHasParent) {
+      return false;
+    }
+
+    return true;
+  }
+
+  hasParent(event: EventEntity): boolean {
+    if (event.parentEventId !== null && event.parentEventId !== '') {
+      return true;
+    }
+
+    return false;
+  }
 }
