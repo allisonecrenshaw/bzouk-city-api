@@ -2,6 +2,10 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { DefaultEntity } from '../../utils/default.entity.js';
 import { LocationEntity } from '../location/location.entity.js';
 
+export class NewEventDTO {
+  // TO DO
+}
+
 @Entity('event')
 export class EventEntity extends DefaultEntity {
   @Column({ type: 'varchar', nullable: false })
