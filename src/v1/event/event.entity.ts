@@ -3,7 +3,16 @@ import { DefaultEntity } from '../../utils/default.entity.js';
 import { LocationEntity } from '../location/location.entity.js';
 
 export class NewEventDTO {
-  // TO DO
+  // title
+  // description
+  // locationId
+  // startDateTime
+  // endDateTime
+  // isRecurring
+  // types (array?) (if allowing multiple, need to change entity and create join table)
+  // websiteUrl
+  // registrationUrl
+  // parentEventId
 }
 
 @Entity('event')
