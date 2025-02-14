@@ -1,18 +1,60 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { DefaultEntity } from '../../utils/default.entity.js';
 import { LocationEntity } from '../location/location.entity.js';
+import {
+  IsBoolean,
+  IsDateString,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUrl,
+  IsUUID,
+} from 'class-validator';
+
+import { EventTypes } from '../constants.js';
 
 export class NewEventDTO {
-  // title
-  // description
-  // locationId
-  // startDateTime
-  // endDateTime
-  // isRecurring
-  // types (array?) (if allowing multiple, need to change entity and create join table)
-  // websiteUrl
-  // registrationUrl
-  // parentEventId
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsOptional()
+  description: string;
+
+  @IsUUID()
+  @IsNotEmpty()
+  locationId: string;
+
+  @IsDateString()
+  @IsNotEmpty()
+  startDateTime: string;
+
+  @IsDateString()
+  @IsNotEmpty()
+  endDateTime: string;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  isRecurring: boolean;
+
+  @IsString()
+  @IsNotEmpty()
+  type: EventTypes;
+
+  @IsOptional()
+  @IsUrl()
+  websiteURL?: string;
+
+  @IsOptional()
+  @IsUrl()
+  registrationURL?: string;
+
+  @IsOptional()
+  @IsUUID()
+  parentEventId?: string;
+
+  // TODO need to update to include recurrence info
 }
 
 @Entity('event')
