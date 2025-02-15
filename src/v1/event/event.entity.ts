@@ -2,6 +2,8 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { DefaultEntity } from '../../utils/default.entity.js';
 import { LocationEntity } from '../location/location.entity.js';
 import {
+  ArrayMinSize,
+  IsArray,
   IsBoolean,
   IsDateString,
   IsNotEmpty,
@@ -9,9 +11,13 @@ import {
   IsString,
   IsUrl,
   IsUUID,
+  ValidateNested,
 } from 'class-validator';
 
 import { EventTypes } from '../constants.js';
+import { NewRecurrenceRuleDTO } from '../recurrence-rule/recurrence-rule.entity.js';
+import { NewRecurrenceDetailsDTO } from '../recurrence-details/recurrence-details.entity.js';
+import { Type } from 'class-transformer';
 
 export class NewEventDTO {
   @IsString()
@@ -48,13 +54,22 @@ export class NewEventDTO {
 
   @IsOptional()
   @IsUrl()
-  registrationURL?: string;
+  registrationURL: string;
 
   @IsOptional()
   @IsUUID()
-  parentEventId?: string;
+  parentEventId: string;
 
-  // TODO need to update to include recurrence info
+  @ValidateNested()
+  @Type(() => NewRecurrenceRuleDTO)
+  @IsNotEmpty()
+  recurrenceRule: NewRecurrenceRuleDTO;
+
+  @IsArray()
+  @ArrayMinSize(1) // Ensures at least one recurrence detail
+  @ValidateNested({ each: true })
+  @Type(() => NewRecurrenceDetailsDTO)
+  recurrenceDetails: NewRecurrenceDetailsDTO[];
 }
 
 @Entity('event')
