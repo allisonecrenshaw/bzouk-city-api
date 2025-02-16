@@ -1,6 +1,6 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { EventService } from './event.service.js';
-import { EventEntity } from './event.entity.js';
+import { EventEntity, NewEventDTO } from './event.entity.js';
 
 @Controller('event')
 export class EventController {
@@ -13,7 +13,7 @@ export class EventController {
 
   @Post()
   // Update return type here when service implementation is finished
-  async create(): Promise<string> {
+  async create(@Body() newEventDTO: NewEventDTO): Promise<EventEntity> {
     return this.eventService.createEventAndRecurrenceRule();
   }
 }

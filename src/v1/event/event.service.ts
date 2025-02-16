@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { EventEntity } from './event.entity.js';
+import { EventEntity, NewEventDTO } from './event.entity.js';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -29,10 +29,21 @@ export class EventService {
     }
   }
 
-  async createEventAndRecurrenceRule(): Promise<string> {
-    // TO DO: Implement event creation
-    // Will need also make calls to create RecurrenceRule and RecurrenceDetails
-    return 'to do';
+  async createEventAndRecurrenceRule(
+    newEventDTO: NewEventDTO,
+  ): Promise<EventEntity> {
+    const validParent = await this.isParentValid(newEventDTO.parentEventId);
+    if (validParent === false) {
+      // TODO error handling here
+    }
+
+    const event = this.eventRepository.create(newEventDTO);
+
+    // TODO create recurrence rule
+
+    // TODO create recurrence details
+
+    return event;
   }
 
   async isParentValid(eventId: string): Promise<boolean> {
