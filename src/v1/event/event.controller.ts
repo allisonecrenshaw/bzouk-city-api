@@ -14,6 +14,6 @@ export class EventController {
   @Post()
   // Update return type here when service implementation is finished
   async create(@Body() newEventDTO: NewEventDTO): Promise<EventEntity> {
-    return this.eventService.createEventAndRecurrenceRule();
+    return this.eventService.createEventAndRecurrenceRule(newEventDTO);
   }
 }
