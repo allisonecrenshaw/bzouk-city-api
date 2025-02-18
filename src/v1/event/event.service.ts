@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { EventEntity, NewEventDTO } from './event.entity.js';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -32,44 +36,28 @@ export class EventService {
   async createEventAndRecurrenceRule(
     newEventDTO: NewEventDTO,
   ): Promise<EventEntity> {
-    const validParent = await this.isParentValid(newEventDTO.parentEventId);
-    if (validParent === false) {
-      // TODO error handling here
+    if (newEventDTO.parentEventId !== null) {
+      const parentEvent = await this.eventRepository.findOne({
+        where: { id: newEventDTO.parentEventId },
+      });
+      if (!parentEvent) {
+        throw new BadRequestException(
+          `Parent event with ID "${newEventDTO.parentEventId}" does not exist.`,
+        );
+      }
+      if (parentEvent.parentEventId !== null) {
+        throw new BadRequestException(
+          `Invalid parent event: Event with ID "${newEventDTO.parentEventId}" cannot be a parent event because it is a child event.`,
+        );
+      }
     }
 
-    const event = this.eventRepository.create(newEventDTO);
+    const newEvent = this.eventRepository.create(newEventDTO);
 
     // TODO create recurrence rule
 
     // TODO create recurrence details
 
-    return event;
-  }
-
-  async isParentValid(eventId: string): Promise<boolean> {
-    const event = await this.eventRepository.findOne({
-      where: { id: eventId },
-    });
-
-    if (!event) {
-      return false;
-    }
-
-    let eventHasParent = this.hasParent(event);
-
-    // event's parent is not allowed to also have a parent
-    if (eventHasParent) {
-      return false;
-    }
-
-    return true;
-  }
-
-  hasParent(event: EventEntity): boolean {
-    if (event.parentEventId !== null && event.parentEventId !== '') {
-      return true;
-    }
-
-    return false;
+    return newEvent;
   }
 }
